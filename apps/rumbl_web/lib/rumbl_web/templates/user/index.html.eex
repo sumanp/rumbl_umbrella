@@ -1,0 +1,10 @@
+<h1>Listing Users</h1>
+<table>
+  <%= for user <- @users do %>
+  <tr>
+    <td><%= render "user.html", user: user %></td>
+    <td><%= link "View", to: Routes.user_path(@conn, :show, user.id) %></td>
+  </tr>
+  <% end %>
+</table>
+<!-- That’s mostly HTML markup, with a little Elixir mixed in. This template lan- guage is called EEx, which stands for Embedded Elixir, and is part of the Elixir’s standard library. -->
