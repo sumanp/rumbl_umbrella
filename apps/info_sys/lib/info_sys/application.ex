@@ -10,7 +10,7 @@ defmodule InfoSys.Application do
     children = [
       # Starts a worker by calling: InfoSys.Worker.start_link(arg)
       # {InfoSys.Worker, arg}
-      Supervisor.child_spec({InfoSys.Counter, 5}, restart: :permanant)
+      Supervisor.child_spec({InfoSys.Counter, 5}, restart: :permanent)
       # module you want to start and the value that will be received on start_link
       # by the GenServer. Alternatively, passing in only a module name uses a default
       # value of [].
