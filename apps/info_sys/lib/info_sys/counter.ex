@@ -17,6 +17,7 @@ defmodule InfoSys.Counter do
   end
 
   def init(initial_val) do
+    Process.send_after(self(), :tick, 1000)
     {:ok, initial_val}
   end
 
@@ -34,4 +35,11 @@ defmodule InfoSys.Counter do
   # Notice the _from in the function head. You can use an argument
   # leading with an underscore, just as you’d use a _ as wildcard match.
   # With this feature, we can explicitly describe the argument while ignoring the contents.
+  def handle_info(:tick, val) when val <= 0, do: raise "boom!"
+  
+  def handle_info(:tick, val) do
+    IO.puts("tick #{val}")
+    Process.send_after(self(), :tick, 1000)
+    {:noreply, val - 1}
+  end
 end
